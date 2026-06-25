@@ -1,2 +1,46 @@
 # webs-douqiu-pages
-HTML page archive and documentation
+
+## 项目简介
+
+本项目是一个用于归档和发布多个独立 HTML 页面的仓库。仓库内的页面均为独立的静态网页，内容涵盖信息展示、工具页面、学习笔记等多种类型。仓库本身不针对任何特定网站或域名，仅作为页面资源的管理与托管空间。
+
+## 目录说明
+
+```
+.
+├── index.html          # 仓库首页 / 页面索引
+├── pages/              # 存放所有独立 HTML 页面
+│   ├── example1.html
+│   ├── example2.html
+│   └── ...
+├── assets/             # 公共资源文件（CSS、JS、图片等）
+│   ├── css/
+│   ├── js/
+│   └── images/
+└── README.md           # 本文件
+```
+
+## 页面归档说明
+
+- 每个 HTML 页面均为独立、自包含的静态文件，可直接在浏览器中打开或部署到静态托管服务。
+- 页面之间不依赖特定后端服务或数据库。
+- 页面命名遵循简洁、直观的原则，便于索引与引用。
+
+## 使用方式
+
+1. 克隆本仓库到本地：
+   ```bash
+   git clone https://github.com/your-username/webs-douqiu-pages.git
+   ```
+2. 直接使用浏览器打开 `pages/` 目录下的任意 HTML 文件，或通过本地服务器运行（例如使用 `python -m http.server`）。
+3. 也可将整个仓库部署到支持静态网站的托管平台。
+
+## 维护说明
+
+- 本仓库不定期更新，新增或修改页面会通过 commit 记录。
+- 欢迎提交 Issue 或 Pull Request 进行页面补充或错误修正。
+- 仓库内的页面内容仅供归档参考，不构成任何形式的承诺或推荐。
+
+## 许可
+
+本项目采用 [MIT License](LICENSE) 开源协议，页面内容版权归原作者所有。
