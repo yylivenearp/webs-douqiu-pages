@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
+    <title>斗球直播 — 生活里的赛事陪伴</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: #eef6f5;
+            color: #1f2d2b;
+            line-height: 1.6;
+            padding: 0 16px;
+        }
+
+        .page {
+            max-width: 1160px;
+            margin: 0 auto;
+            padding: 32px 0 48px;
+        }
+
+        /* hero 区 — 杂志感横幅 */
+        .hero {
+            background: linear-gradient(145deg, #0b3b3a 0%, #1a6b67 100%);
+            border-radius: 32px;
+            padding: 48px 36px;
+            margin-bottom: 40px;
+            color: #f0fdfb;
+            box-shadow: 0 12px 24px -8px rgba(8, 60, 55, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            right: -40px;
+            bottom: -40px;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, #40c9b3 0%, transparent 70%);
+            opacity: 0.2;
+            border-radius: 50%;
+        }
+
+        .hero h1 {
+            font-size: 2.4rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero p {
+            font-size: 1.15rem;
+            max-width: 640px;
+            opacity: 0.92;
+            position: relative;
+            z-index: 1;
+            margin-bottom: 8px;
+        }
+
+        .hero .badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(4px);
+            padding: 6px 18px;
+            border-radius: 40px;
+            font-size: 0.85rem;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            margin-top: 12px;
+        }
+
+        /* 网格卡片系统 */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 24px;
+            margin: 40px 0;
+        }
+
+        @media (min-width: 600px) {
+            .feature-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 960px) {
+            .feature-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .card {
+            background: #ffffffdd;
+            background: #f9fefd;
+            backdrop-filter: blur(2px);
+            border-radius: 24px;
+            padding: 28px 22px;
+            box-shadow: 0 6px 16px rgba(0, 40, 35, 0.06);
+            border: 1px solid #d7ebe8;
+            transition: all 0.15s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 28px rgba(10, 80, 70, 0.08);
+            border-color: #3cb0a0;
+        }
+
+        .card .icon {
+            font-size: 2rem;
+            display: block;
+            margin-bottom: 12px;
+            color: #2b8a7a;
+        }
+
+        .card h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #083835;
+            margin-bottom: 10px;
+            letter-spacing: -0.01em;
+        }
+
+        .card p {
+            font-size: 0.97rem;
+            color: #2c4a46;
+            line-height: 1.6;
+        }
+
+        /* 杂志内文段落 */
+        .essay-section {
+            background: #ffffff;
+            border-radius: 28px;
+            padding: 36px 30px;
+            margin: 32px 0;
+            box-shadow: 0 4px 12px rgba(12, 60, 52, 0.04);
+            border: 1px solid #d0e6e1;
+        }
+
+        .essay-section h2 {
+            font-size: 1.7rem;
+            font-weight: 550;
+            color: #0a4a44;
+            margin-bottom: 20px;
+            border-left: 6px solid #2b9b8b;
+            padding-left: 18px;
+        }
+
+        .essay-section p {
+            margin-bottom: 18px;
+            font-size: 1rem;
+            color: #1e3b37;
+        }
+
+        .essay-section p:last-child {
+            margin-bottom: 0;
+        }
+
+        .highlight-link {
+            color: #0b6b60;
+            font-weight: 600;
+            text-decoration: none;
+            border-bottom: 2px solid #50c2b0;
+            padding-bottom: 1px;
+            transition: border 0.1s;
+        }
+
+        .highlight-link:hover {
+            border-bottom-color: #0b6b60;
+        }
+
+        /* 小faq / 摘要卡片 */
+        .faq-mini {
+            background: #e7f6f2;
+            border-radius: 20px;
+            padding: 24px 28px;
+            margin: 30px 0 20px;
+            border: 1px solid #b8dbd2;
+        }
+
+        .faq-mini h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #05443d;
+            margin-bottom: 12px;
+        }
+
+        .faq-mini p {
+            font-size: 0.95rem;
+            color: #1c4a44;
+            margin-bottom: 8px;
+        }
+
+        .faq-mini p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* 页尾 */
+        .page-footer {
+            margin-top: 48px;
+            padding-top: 28px;
+            border-top: 1px solid #c5ded8;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9rem;
+            color: #26635a;
+        }
+
+        .footer-note {
+            opacity: 0.8;
+        }
+
+        @media (max-width: 480px) {
+            .hero {
+                padding: 32px 20px;
+            }
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            .essay-section {
+                padding: 24px 18px;
+            }
+            .card {
+                padding: 22px 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+
+    <!-- hero banner 杂志封面感 -->
+    <div class="hero">
+        <h1>斗球直播 · 日常的帷幔</h1>
+        <p>从午后街角的屏幕，到深夜客厅的微光——比赛从未离场。打开 <a href="https://webs-douqiu.com" style="color:#bcf0e6; text-decoration:underline; text-underline-offset:4px; font-weight:500;">斗球直播</a>，就像在熟悉的位置找到一杯温茶。</p>
+        <p style="font-size:0.95rem; opacity:0.8; margin-top:4px;">不止是看球，是持续连接那些让你心跳加速的瞬间。</p>
+        <span class="badge">⚡ 杂志特辑 · 球场与日常</span>
+    </div>
+
+    <!-- 网格卡片：三个维度  -->
+    <div class="feature-grid">
+        <div class="card">
+            <span class="icon">📱</span>
+            <h3>每刻在场</h3>
+            <p>赛事日程不靠猜。从欧洲联赛到本土杯赛，<a href="https://webs-douqiu.com" class="highlight-link">斗球直播</a> 把预告和即时比分放在你触手可及的地方。休息时刷一眼，错过不存在的。</p>
+        </div>
+        <div class="card">
+            <span class="icon">🧩</span>
+            <h3>多线并行</h3>
+            <p>周末两三场同时开赛？分屏或切换，流畅不卡顿。每个机位都保留原声，像坐在看台不同角落——自己决定注意力落在哪。</p>
+        </div>
+        <div class="card">
+            <span class="icon">🌿</span>
+            <h3>轻量陪伴</h3>
+            <p>不占内存，不弹浮夸广告。背景播放也好，静音看画面也罢，它安安静静地做你体育生活的背景板。需要时，一秒进入状态。</p>
+        </div>
+    </div>
+
+    <!-- 三段自然介绍：杂志内文  -->
+    <div class="essay-section">
+        <h2>一场比赛，三面生活</h2>
+        <p>我习惯在午休时打开 <a href="https://webs-douqiu.com" class="highlight-link">斗球直播</a>，只开声音——解说员的语气能告诉我场上的紧张程度。同事偶尔凑过来问“谁跟谁”，我摘下一边耳机，像分享一个老朋友的近况。足球也好，篮球也罢，运动最迷人的地方在于它的不确定性，而直播保留了这份原味。</p>
+        <p>下班后的傍晚，厨房里锅铲作响，手机架在窗台。进球的一刻，欢呼从屏幕里溢出来，混着油烟的滋滋声，成了独特的下饭bgm。不必正襟危坐，<a href="https://webs-douqiu.com" class="highlight-link">斗球直播</a> 像一张舒服的旧沙发，接纳你各种姿势看球。</p>
+        <p>周末约朋友来家里，投屏到电视上。几个人占据沙发不同角落，边看边争论战术。有人用手机查数据，有人单纯享受集体呐喊的畅快。直播把分散的我们聚到同一个时间线——这不是回放能替代的。</p>
+    </div>
+
+    <!-- 小faq 摘要风格  -->
+    <div class="faq-mini">
+        <h3>📌 你可能想知道的</h3>
+        <p><strong>需要注册吗？</strong> 打开 <a href="https://webs-douqiu.com" class="highlight-link">斗球直播</a> 就能浏览大部分内容，部分深度互动功能可以按需了解。</p>
+        <p><strong>移动端体验如何？</strong> 专门适配过手机竖屏，滑动、缩放、切换都顺手，也支持平板和桌面。</p>
+        <p><strong>画质怎么样？</strong> 根据网络自适应调节，多数赛事提供高清选项。稳定流畅是优先考虑的。</p>
+    </div>
+
+    <!-- 页尾访问提示  -->
+    <div class="page-footer">
+        <span class="footer-note">杂志专题 · 日常赛事陪伴</span>
+        <span>了解更多，请至 <a href="https://webs-douqiu.com" class="highlight-link">斗球直播</a></span>
+    </div>
+
+</div>
+</body>
+</html>
